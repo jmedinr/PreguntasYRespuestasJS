@@ -78,15 +78,19 @@ function ctrl_irAMenuPrincipal() {
 }
 
 function ctrl_dioClickEnRespuesta(respuesta) {
-  let ronda = 1;
-  if (respuesta === 4) {
-    console.log("correcto");
-    modelo.preguntaActual += 1;
-    modelo.acumulado += 100;
-    ronda++;
-    view_iniciarPartida();
-  } else {
+  if (respuesta !== 4) {
     console.log(respuesta);
     view_partidaPerdida();
+    return;
+  }
+
+  if (modelo.preguntaActual <= 3) {
+    console.log("correcto");
+    console.log("preguntaActual" + modelo.preguntaActual);
+    modelo.preguntaActual += 1;
+    modelo.acumulado += 100;
+    view_iniciarPartida();
+  } else {
+    view_partidaGanada();
   }
 }
