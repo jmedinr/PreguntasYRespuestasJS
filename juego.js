@@ -57,6 +57,17 @@ function view_partidaPerdida() {
     `;
 }
 
+function view_partidaGanada() {
+  document.getElementById("root").innerHTML = `
+    <h3>Felicidades: Ganaste</h3> 
+    <button onclick="ctrl_iniciarPartida()">Iniciar nueva partida</button>
+    <br>
+    <br>
+    
+    <button onclick="ctrl_irAMenuPrincipal()">Regresar a menu principal</button>
+    `;
+}
+
 function ctrl_iniciarPartida() {
   modelo.preguntas.sort(() => Math.random() - 0.5);
   view_iniciarPartida();
@@ -66,15 +77,13 @@ function ctrl_irAMenuPrincipal() {
   view_menuPrincipal();
 }
 
-function ctrl_partidaPerdida() {
-  view_menuPrincipal();
-}
-
 function ctrl_dioClickEnRespuesta(respuesta) {
+  let ronda = 1;
   if (respuesta === 4) {
     console.log("correcto");
     modelo.preguntaActual += 1;
     modelo.acumulado += 100;
+    ronda++;
     view_iniciarPartida();
   } else {
     console.log(respuesta);
