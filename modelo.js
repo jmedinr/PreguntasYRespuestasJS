@@ -289,5 +289,6 @@ modelo = {
   ],
 
   preguntaActual: 0,
+  nickname: "Anonimo",
   acumulado: 100,
 };

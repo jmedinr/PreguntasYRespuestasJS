@@ -20,7 +20,7 @@ function view_iniciar_juego() {
    
     <br>
     <br>
-    <button onclick="ctrl_iniciarPartida()">Iniciar partida</button>
+    <button onclick="ctrl_nuevaPartida()">Iniciar partida</button>
     <br>
     <br>
     
@@ -35,7 +35,7 @@ function view_partidaPerdida() {
     <br>
     <br>
     
-    <button onclick="ctrl_irAMenuPrincipal()">Regresar a menu principal</button>
+    <button onclick="ctrl_irAMenuPrincipalPerdedor()">Regresar a menu principal</button>
     `;
 }
 
@@ -46,7 +46,7 @@ function view_partidaGanada() {
     <br>
     <br>
     
-    <button onclick="ctrl_irAMenuPrincipal()">Regresar a menu principal</button>
+    <button onclick="ctrl_irAMenuPrincipalGanador()">Regresar a menu principal</button>
     `;
 }
 
@@ -125,26 +125,96 @@ function view_iniciarPartida() {
 }
 
 function ctrl_iniciarPartida() {
+  modelo.acumulado = 0;
+  modelo.preguntaActual = 0;
   crearPreguntas();
   view_iniciarPartida();
 }
 
+function ctrl_nuevaPartida() {
+  modelo.nickname = document.getElementById("nickname").value;
+  console.log(modelo.nickname);
+  modelo.acumulado = 0;
+  modelo.preguntaActual = 0;
+  modelo.preguntas.sort(() => Math.random() - 0.5);
+  view_iniciarPartida();
+}
+
+//borrar
 function ctrl_irAMenuPrincipal() {
+  console.log("acumulado " + modelo.acumulado);
+  console.log("nickname " + modelo.acumulado);
   view_menuPrincipal();
 }
 
+function ctrl_irAMenuPrincipalGanador() {
+  view_menuPrincipal();
+  if (modelo.nickname === "") {
+    modelo.nickname = "Anonimo";
+  }
+  modelo.historico.push({
+    nickname: modelo.nickname,
+    totalAcumulado: modelo.acumulado,
+  });
+}
+
+function ctrl_irAMenuPrincipalPerdedor() {
+  view_menuPrincipal();
+  if (modelo.nickname === "") {
+    modelo.nickname = "Anonimo";
+  }
+  modelo.historico.push({
+    nickname: modelo.nickname,
+    totalAcumulado: modelo.acumulado,
+  });
+}
+
 function ctrl_dioClickEnRespuesta(respuesta) {
+  if (modelo.preguntaActual >= 4) {
+    view_partidaGanada();
+    return;
+  }
   if (respuesta==correcta) {
     modelo.preguntaActual += 1;
     modelo.acumulado += 100;
     correcta=""
     crearPreguntas();
-    view_iniciarPartida();
   } else {
     correcta=""
     crearPreguntas();
     view_partidaPerdida();
+    modelo.acumulado = 0;
+    return;
   }
+  modelo.acumulado += calculaPremioAcumulado(modelo.preguntaActual + 1);
+  view_iniciarPartida();
+}
+
+function calculaPremioAcumulado(ronda) {
+  var premioAcumulado = 0;
+  switch (ronda) {
+    case 1:
+      premioAcumulado = 100;
+      break;
+    case 2:
+      premioAcumulado = 200;
+      break;
+
+    case 3:
+      premioAcumulado = 300;
+      break;
+    case 4:
+      premioAcumulado = 500;
+      break;
+    case 5:
+      premioAcumulado = 1000;
+      break;
+
+    default:
+      premioAcumulado = 0;
+      break;
+  }
+  return premioAcumulado;
 }
 
 
