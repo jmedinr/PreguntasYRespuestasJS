@@ -150,5 +150,6 @@ modelo = {
   ],
 
   preguntaActual: 0,
+  nickname: "",
   acumulado: 100,
 };
