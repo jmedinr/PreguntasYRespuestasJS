@@ -272,7 +272,7 @@ modelo = {
         nivel: 5,
         pregunta: "¿En qué océano queda Madagascar?",
         opcion1: "Océano Pacífico",
-        opcion2: "Océano Pacífico",
+        opcion2: "Océano Caribe",
         opcion3: "Océano Antártico",
         opcionCorrecta: "Océano Índico",
       },

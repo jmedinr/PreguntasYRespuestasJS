@@ -1,14 +1,14 @@
 // modelo: aqui van solo datos, no funciones
-var respuestas = ["R1", "R2", "R3", "R4"];
-var preguntas = [0, 1, 2, 3, 4];
-var preguntas_c1 = [];
-var preguntas_c2 = [];
-var preguntas_c3 = [];
-var preguntas_c4 = [];
-var preguntas_c5 = [];
-var correcta = "";
-var iterador = 0;
-var listaTemporal = [];
+let respuestas = ["R1", "R2", "R3", "R4"];
+let preguntas = [0, 1, 2, 3, 4];
+let preguntas_c1 = [];
+let preguntas_c2 = [];
+let preguntas_c3 = [];
+let preguntas_c4 = [];
+let preguntas_c5 = [];
+let correcta = "";
+let iterador = 0;
+let listaTemporal = [];
 
 // vistas generales
 
@@ -179,7 +179,7 @@ function ctrl_nuevaPartida() {
 
 //borrar
 function menuPrincipal() {
-  var premio = calculaPremioAcumulado(modelo.preguntaActual);
+  let premio = calculaPremioAcumulado(modelo.preguntaActual);
   if (modelo.nickname === "") {
     modelo.nickname = "Anonimo";
   }
@@ -233,7 +233,7 @@ function ctrl_dioClickEnRespuesta(respuesta) {
 
 // funciones complementarias
 function calculaPremioAcumulado(ronda) {
-  var premioAcumulado = 0;
+  let premioAcumulado = 0;
   switch (ronda) {
     case 1:
       premioAcumulado = 100;
@@ -309,7 +309,7 @@ function shuffle() {
   //"Shufflea" las respuestas
   while (listaTemporal.length < 4) {
     iterador = Math.floor(Math.random() * 5);
-    var idx = listaTemporal.indexOf(iterador);
+    let idx = listaTemporal.indexOf(iterador);
     if (idx == -1 && iterador != 0) {
       listaTemporal.push(iterador);
     }
@@ -317,7 +317,7 @@ function shuffle() {
 }
 
 function validarCorrecta() {
-  var ind = 0;
+  let ind = 0;
   for (i = 0; i < listaTemporal.length; i++) {
     if (listaTemporal[i] == 4) {
       break;
