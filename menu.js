@@ -1,6 +1,8 @@
 view_menuPrincipal();
 
 // vistas: encargadas de pintar en el dom
+
+// view_menuPrincipal(): Se encarga de la vista del menu principal
 function view_menuPrincipal() {
   document.getElementById("root").innerHTML = `
     <h1>Bienvenido al juego de preguntas</h1>
