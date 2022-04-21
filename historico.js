@@ -7,7 +7,6 @@ function view_historico() {
     <h1>Bienvenido al juego de preguntas</h1>
     <h3>Tabla historico de partidas:</h3>
     <table>${mostrarHitorico()}</table>
-    <h5>falta estilo tabla </h5>
     <br>
     <br>
     <button onclick="ctrl_irAMenuPrincipal()">Regresar a menu principal</button>
@@ -28,7 +27,7 @@ function view_historico() {
 // controladores: solo ellos pueden cambiar el modelo y las vistas
 
 function ctrl_verHistorico() {
-  view_historico()();
+  view_historico();
 }
 
 function ctrl_irAMenuPrincipal() {

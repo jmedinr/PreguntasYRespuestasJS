@@ -14,23 +14,21 @@ function view_iniciar_juego() {
   document.getElementById("root").innerHTML = `
     <h1>Bienvenido al juego de preguntas</h1>
     <h3>Vamos a jugar:</h3>
+    <h4>Juego de preguntas y respuestas</h4>
+    <a>Ingresa por favor un Nickname</a>
     <input type="text" placeholder="NICKNAME"name="nickname" id="nickname">
-    
-    <h5>Juego de preguntas y respuestas</h5>
-   
     <br>
     <br>
     <button onclick="ctrl_nuevaPartida()">Iniciar partida</button>
     <br>
     <br>
-    
     <button onclick="ctrl_irAMenuPrincipal()">Regresar a menu principal</button>
     `;
 }
 
 function view_partidaPerdida() {
   document.getElementById("root").innerHTML = `
-    <h3>Perdiste:</h3> 
+    <h3>Perdiste:</h3>
     <button onclick="ctrl_iniciarPartida()">Iniciar nueva partida</button>
     <br>
     <br>
@@ -60,7 +58,7 @@ function view_iniciarPartida() {
 	<section id="resp2" class="respuesta rder" onclick="ctrl_dioClickEnRespuesta('R2')">B)<span id="R2"></span></section>
 	<section id="resp3" class="respuesta rizq" onclick="ctrl_dioClickEnRespuesta('R3')">C)<span id="R3"></span></section>
 	<section id="resp4" class="respuesta rder" onclick="ctrl_dioClickEnRespuesta('R4')">D)<span id="R4"></span></section>
-	<button id="iniciar" class="panel_sup" onclick="ctrl_irAMenuPrincipal();" >Salir</button>
+	<button id="iniciar" class="panel_sup" onclick="menuPrincipal()" >Salir</button>
 	<div id="wrap_premio" class="panel_sup">$<span id="premio">${
     modelo.acumulado
   }</span></div>
@@ -125,30 +123,36 @@ function view_iniciarPartida() {
 }
 
 function ctrl_iniciarPartida() {
-  modelo.acumulado = 0;
-  modelo.preguntaActual = 0;
+  limpiarPreguntas()
   crearPreguntas();
+  modelo.acumulado = 100;
+  modelo.preguntaActual = 0;
   view_iniciarPartida();
 }
 
 function ctrl_nuevaPartida() {
   modelo.nickname = document.getElementById("nickname").value;
-  console.log(modelo.nickname);
-  modelo.acumulado = 0;
+  modelo.acumulado = 100;
   modelo.preguntaActual = 0;
-  modelo.preguntas.sort(() => Math.random() - 0.5);
+  limpiarPreguntas()
+  crearPreguntas();
   view_iniciarPartida();
 }
 
 //borrar
-function ctrl_irAMenuPrincipal() {
-  console.log("acumulado " + modelo.acumulado);
-  console.log("nickname " + modelo.acumulado);
+function menuPrincipal() {
+  var premio = calculaPremioAcumulado(modelo.preguntaActual)
+  if (modelo.nickname === "") {
+    modelo.nickname = "Anonimo";
+  }
+  modelo.historico.push({
+    nickname: modelo.nickname,
+    totalAcumulado: premio,
+  });
   view_menuPrincipal();
 }
 
 function ctrl_irAMenuPrincipalGanador() {
-  view_menuPrincipal();
   if (modelo.nickname === "") {
     modelo.nickname = "Anonimo";
   }
@@ -156,17 +160,11 @@ function ctrl_irAMenuPrincipalGanador() {
     nickname: modelo.nickname,
     totalAcumulado: modelo.acumulado,
   });
+  view_menuPrincipal();
 }
 
 function ctrl_irAMenuPrincipalPerdedor() {
   view_menuPrincipal();
-  if (modelo.nickname === "") {
-    modelo.nickname = "Anonimo";
-  }
-  modelo.historico.push({
-    nickname: modelo.nickname,
-    totalAcumulado: modelo.acumulado,
-  });
 }
 
 function ctrl_dioClickEnRespuesta(respuesta) {
@@ -181,12 +179,17 @@ function ctrl_dioClickEnRespuesta(respuesta) {
     crearPreguntas();
   } else {
     correcta=""
+    if (modelo.nickname === "") {
+      modelo.nickname = "Anonimo";
+    }
+    modelo.historico.push({
+      nickname: modelo.nickname,
+      totalAcumulado: 0,
+    });
     crearPreguntas();
     view_partidaPerdida();
-    modelo.acumulado = 0;
     return;
   }
-  modelo.acumulado += calculaPremioAcumulado(modelo.preguntaActual + 1);
   view_iniciarPartida();
 }
 
@@ -204,10 +207,10 @@ function calculaPremioAcumulado(ronda) {
       premioAcumulado = 300;
       break;
     case 4:
-      premioAcumulado = 500;
+      premioAcumulado = 400;
       break;
     case 5:
-      premioAcumulado = 1000;
+      premioAcumulado = 500;
       break;
 
     default:
@@ -217,6 +220,13 @@ function calculaPremioAcumulado(ronda) {
   return premioAcumulado;
 }
 
+function limpiarPreguntas(){
+  preguntas_c1.splice(0, preguntas_c1.length);
+  preguntas_c2.splice(0, preguntas_c2.length);
+  preguntas_c3.splice(0, preguntas_c3.length);
+  preguntas_c4.splice(0, preguntas_c4.length);
+  preguntas_c5.splice(0, preguntas_c5.length);
+}
 
 function crearPreguntas(){
 
