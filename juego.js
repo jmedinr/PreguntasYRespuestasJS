@@ -53,7 +53,7 @@ function view_partidaPerdida() {
     <br>
     <br>
     
-    <button onclick="ctrl_irAMenuPrincipalGanadorPerdedor()">Regresar a menu principal</button>
+    <button onclick="ctrl_irAMenuPrincipalPerdedor()">Regresar a menu principal</button>
     `;
 }
 
@@ -93,14 +93,20 @@ function ctrl_irAMenuPrincipal() {
 
 function ctrl_irAMenuPrincipalGanador() {
   view_menuPrincipal();
+  if (modelo.nickname === "") {
+    modelo.nickname = "Anonimo";
+  }
   modelo.historico.push({
     nickname: modelo.nickname,
     totalAcumulado: modelo.acumulado,
   });
 }
 
-function ctrl_irAMenuPrincipalGanadorPerdedor() {
+function ctrl_irAMenuPrincipalPerdedor() {
   view_menuPrincipal();
+  if (modelo.nickname === "") {
+    modelo.nickname = "Anonimo";
+  }
   modelo.historico.push({
     nickname: modelo.nickname,
     totalAcumulado: modelo.acumulado,
