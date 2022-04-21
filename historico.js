@@ -1,7 +1,6 @@
 view_menuPrincipal();
 
-// modelo: aqui van solo datos, no funciones
-
+// vista: vista general que muestra el historico en el DOM
 function view_historico() {
   document.getElementById("root").innerHTML = `
     <h1>Bienvenido al juego de preguntas</h1>
@@ -24,7 +23,7 @@ function view_historico() {
   }
 }
 
-// controladores: solo ellos pueden cambiar el modelo y las vistas
+ // controladores: solo ellos pueden cambiar el modelo y las vistas
 
 function ctrl_verHistorico() {
   view_historico();
