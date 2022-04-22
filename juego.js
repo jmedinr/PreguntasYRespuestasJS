@@ -16,7 +16,6 @@ function view_iniciar_juego() {
   document.getElementById("root").innerHTML = `
     <h1>Bienvenido al juego de preguntas</h1>
     <h3>Vamos a jugar:</h3>
-    <h4>Juego de preguntas y respuestas</h4>
     <a>Ingresa por favor un Nickname</a>
     <input type="text" placeholder="NICKNAME"name="nickname" id="nickname">
     <br>
