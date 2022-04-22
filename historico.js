@@ -5,14 +5,14 @@ function view_historico() {
   document.getElementById("root").innerHTML = `
     <h1>Bienvenido al juego de preguntas</h1>
     <h3>Tabla historico de partidas:</h3>
-    <table>${mostrarHitorico()}</table>
+    <table>${mostrarHistorico()}</table>
     <br>
     <br>
     <button onclick="ctrl_irAMenuPrincipal()">Regresar a menu principal</button>
 
     `;
 
-  function mostrarHitorico() {
+  function mostrarHistorico() {
     var tabla = `<tr><th>Nickname</th><th>Acumulado</th></tr>`;
     for (let index = 0; index < modelo.historico.length; index++) {
       tabla =
@@ -23,7 +23,7 @@ function view_historico() {
   }
 }
 
- // controladores: solo ellos pueden cambiar el modelo y las vistas
+// controladores: solo ellos pueden cambiar el modelo y las vistas
 
 function ctrl_verHistorico() {
   view_historico();

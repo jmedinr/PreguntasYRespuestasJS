@@ -65,94 +65,19 @@ function view_iniciarPartida() {
   if (modelo.preguntaActual < 5) {
     switch (modelo.preguntaActual) {
       case 0:
-        shuffle();
-        document.getElementById("pregunta").innerHTML = `${preguntas_c1[0]}`;
-        document.getElementById("R1").innerHTML = `${
-          preguntas_c1[listaTemporal[0]]
-        }`;
-        document.getElementById("R2").innerHTML = `${
-          preguntas_c1[listaTemporal[1]]
-        }`;
-        document.getElementById("R3").innerHTML = `${
-          preguntas_c1[listaTemporal[2]]
-        }`;
-        document.getElementById("R4").innerHTML = `${
-          preguntas_c1[listaTemporal[3]]
-        }`;
-        validarCorrecta();
-        listaTemporal.splice(0, listaTemporal.length);
+        ordenarPreguntasYRespuestas(preguntas_c1);
         break;
       case 1:
-        shuffle();
-        document.getElementById("pregunta").innerHTML = `${preguntas_c2[0]}`;
-        document.getElementById("R1").innerHTML = `${
-          preguntas_c2[listaTemporal[0]]
-        }`;
-        document.getElementById("R2").innerHTML = `${
-          preguntas_c2[listaTemporal[1]]
-        }`;
-        document.getElementById("R3").innerHTML = `${
-          preguntas_c2[listaTemporal[2]]
-        }`;
-        document.getElementById("R4").innerHTML = `${
-          preguntas_c2[listaTemporal[3]]
-        }`;
-        validarCorrecta();
-        listaTemporal.splice(0, listaTemporal.length);
+        ordenarPreguntasYRespuestas(preguntas_c2);
         break;
       case 2:
-        shuffle();
-        document.getElementById("pregunta").innerHTML = `${preguntas_c3[0]}`;
-        document.getElementById("R1").innerHTML = `${
-          preguntas_c3[listaTemporal[0]]
-        }`;
-        document.getElementById("R2").innerHTML = `${
-          preguntas_c3[listaTemporal[1]]
-        }`;
-        document.getElementById("R3").innerHTML = `${
-          preguntas_c3[listaTemporal[2]]
-        }`;
-        document.getElementById("R4").innerHTML = `${
-          preguntas_c3[listaTemporal[3]]
-        }`;
-        validarCorrecta();
-        listaTemporal.splice(0, listaTemporal.length);
+        ordenarPreguntasYRespuestas(preguntas_c3);
         break;
       case 3:
-        shuffle();
-        document.getElementById("pregunta").innerHTML = `${preguntas_c4[0]}`;
-        document.getElementById("R1").innerHTML = `${
-          preguntas_c4[listaTemporal[0]]
-        }`;
-        document.getElementById("R2").innerHTML = `${
-          preguntas_c4[listaTemporal[1]]
-        }`;
-        document.getElementById("R3").innerHTML = `${
-          preguntas_c4[listaTemporal[2]]
-        }`;
-        document.getElementById("R4").innerHTML = `${
-          preguntas_c4[listaTemporal[3]]
-        }`;
-        validarCorrecta();
-        listaTemporal.splice(0, listaTemporal.length);
+        ordenarPreguntasYRespuestas(preguntas_c4);
         break;
       case 4:
-        shuffle();
-        document.getElementById("pregunta").innerHTML = `${preguntas_c5[0]}`;
-        document.getElementById("R1").innerHTML = `${
-          preguntas_c5[listaTemporal[0]]
-        }`;
-        document.getElementById("R2").innerHTML = `${
-          preguntas_c5[listaTemporal[1]]
-        }`;
-        document.getElementById("R3").innerHTML = `${
-          preguntas_c5[listaTemporal[2]]
-        }`;
-        document.getElementById("R4").innerHTML = `${
-          preguntas_c5[listaTemporal[3]]
-        }`;
-        validarCorrecta();
-        listaTemporal.splice(0, listaTemporal.length);
+        ordenarPreguntasYRespuestas(preguntas_c5);
         break;
     }
     console.log("correcta" + correcta);
@@ -232,6 +157,18 @@ function ctrl_dioClickEnRespuesta(respuesta) {
 }
 
 // funciones complementarias
+
+function ordenarPreguntasYRespuestas(pregunta) {
+  shuffle();
+  document.getElementById("pregunta").innerHTML = `${pregunta[0]}`;
+  document.getElementById("R1").innerHTML = `${pregunta[listaTemporal[0]]}`;
+  document.getElementById("R2").innerHTML = `${pregunta[listaTemporal[1]]}`;
+  document.getElementById("R3").innerHTML = `${pregunta[listaTemporal[2]]}`;
+  document.getElementById("R4").innerHTML = `${pregunta[listaTemporal[3]]}`;
+  validarCorrecta();
+  listaTemporal.splice(0, listaTemporal.length);
+}
+
 function calculaPremioAcumulado(ronda) {
   var premioAcumulado = 0;
   switch (ronda) {
