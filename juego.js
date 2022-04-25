@@ -87,7 +87,7 @@ function view_iniciarPartida() {
 function ctrl_iniciarPartida() {
   limpiarPreguntas();
   crearPreguntas();
-  modelo.acumulado = 100;
+  modelo.acumulado = modelo.acumulado + 100;
   modelo.preguntaActual = 0;
   view_iniciarPartida();
 }
