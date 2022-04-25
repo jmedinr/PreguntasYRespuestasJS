@@ -8,10 +8,10 @@ function view_menuPrincipal() {
     <h1>Bienvenido al juego de preguntas</h1>
     <h2>Menu principal</h2>
     <h4>Tienes las siguientes opciones:</h4>
-    <button onclick="ctrl_iniciarJuego()">1. Iniciar juego</button>
+    <button class="iniciar" onclick="ctrl_iniciarJuego()">1. Iniciar juego</button>
     <br>
     <br>
-    <button onclick="ctrl_verHistorico()">2. Ver historico </button>
+    <button class="historico" onclick="ctrl_verHistorico()">2. Ver historico </button>
     
     `;
 }
