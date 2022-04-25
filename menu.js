@@ -9,8 +9,7 @@ function view_menuPrincipal() {
     <h2>Menu principal</h2>
     <h4>Tienes las siguientes opciones:</h4>
     <button class="iniciar" onclick="ctrl_iniciarJuego()">1. Iniciar juego</button>
-    <br>
-    <br>
+    <h1></h1>
     <button class="historico" onclick="ctrl_verHistorico()">2. Ver historico </button>
     
     `;
